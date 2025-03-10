@@ -1,2 +1,2 @@
 Shear Genius Backend
-by:Aaron, Hassan, and Darryl
+by:Aaron, Darryl, and Hassan 
