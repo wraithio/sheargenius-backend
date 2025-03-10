@@ -1,0 +1,6 @@
+@sheargenius_backend_HostAddress = http://localhost:5277
+
+GET {{sheargenius_backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
