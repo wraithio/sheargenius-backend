@@ -1,0 +1,8 @@
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.csproj.AssemblyReference.cache
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.AssemblyInfoInputs.cache
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.AssemblyInfo.cs
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.csproj.CoreCompileInputs.cache
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.sourcelink.json
