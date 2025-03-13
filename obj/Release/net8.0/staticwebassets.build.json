@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "40GSnvRipvfQ644rn7gqCXg/PBHQeC+T16JNd3cQNJM=",
+  "Source": "sheargenius-backend",
+  "BasePath": "_content/sheargenius-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
