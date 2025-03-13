@@ -38,7 +38,7 @@ namespace sheargenius_backend.Services
                 PasswordDTO hashedPassword = HashPassword(newUser.Password);
                 userToAdd.Hash = hashedPassword.Hash;
                 userToAdd.Salt = hashedPassword.Salt;
-                userToAdd.AccountType = "a";
+                userToAdd.AccountType = "";
                 userToAdd.Name = "";
                 userToAdd.Bio = "";
                 userToAdd.Email = "";
@@ -181,15 +181,14 @@ namespace sheargenius_backend.Services
             if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash))
             {
                 _dataContext.Users.Remove(foundUser);
-                _dataContext.SaveChanges();
                 result = _dataContext.SaveChanges() != 0;
+                return result;
             }
             return result;
         }
 
         public bool EditAccount(UserModel foundUser, UserModel updatedUser)
         {
-            foundUser.Username = foundUser.Username;
             foundUser.AccountType = updatedUser.AccountType;
             foundUser.Name = updatedUser.Name;
             foundUser.Bio = updatedUser.Bio;

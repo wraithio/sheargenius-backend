@@ -11,7 +11,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250312182116_init")]
+    [Migration("20250313202122_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -32,13 +32,40 @@ namespace sheargenius_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AccountType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Hash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ShopName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZIP")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
