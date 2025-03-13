@@ -53,11 +53,11 @@ namespace sheargenius_backend.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet]
-        [Route("AuthenticUser")]
-        public string AuthenticUserCheck(){
-            return "You are logged in and allowed to be here.";
+        [HttpPut]
+        [Route("EditAccount")]
+        public bool EditAccount([FromBody]UserModel updatedUser){
+            var foundUser = _userServices.GetUserbyUsername(updatedUser.Username);
+            return _userServices.EditAccount(foundUser,updatedUser);
         }
 
         [HttpPut]
@@ -74,6 +74,13 @@ namespace sheargenius_backend.Controllers
         public bool DeleteAccount([FromBody] UserDTO user)
         {
             return _userServices.DeleteAccount(user);
+        }
+        
+        [Authorize]
+        [HttpGet]
+        [Route("AuthenticUser")]
+        public string AuthenticUserCheck(){
+            return "You are logged in and allowed to be here.";
         }
     }
 }

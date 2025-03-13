@@ -38,6 +38,16 @@ namespace sheargenius_backend.Services
                 PasswordDTO hashedPassword = HashPassword(newUser.Password);
                 userToAdd.Hash = hashedPassword.Hash;
                 userToAdd.Salt = hashedPassword.Salt;
+                userToAdd.AccountType = "a";
+                userToAdd.Name = "";
+                userToAdd.Bio = "";
+                userToAdd.Email = "";
+                userToAdd.ShopName = "";
+                userToAdd.Address = "";
+                userToAdd.City = "";
+                userToAdd.State = "";
+                userToAdd.ZIP = "";
+
                 _dataContext.Users.Add(userToAdd);
                 result = _dataContext.SaveChanges() != 0;
             }
@@ -72,7 +82,7 @@ namespace sheargenius_backend.Services
         public string Login(UserDTO user)
         {
             string? result = null;
-            UserModel foundUser = GetUserbyUserName(user.Username);
+            UserModel foundUser = GetUserbyUsername(user.Username);
 
             if (foundUser == null)
             {
@@ -121,7 +131,7 @@ namespace sheargenius_backend.Services
             return result;
         }
 
-        private UserModel GetUserbyUserName(string username)
+        public UserModel GetUserbyUsername(string username)
         {
             return _dataContext.Users.SingleOrDefault(user => user.Username == username);
         }
@@ -142,10 +152,10 @@ namespace sheargenius_backend.Services
         public bool UpdatePassword(UserDTO user)
         {
             bool result = false;
-            
-            var foundUser = GetUserbyUserName(user.Username);
 
-            if(foundUser == null)
+            var foundUser = GetUserbyUsername(user.Username);
+
+            if (foundUser == null)
             {
                 return result;
             }
@@ -159,12 +169,12 @@ namespace sheargenius_backend.Services
             return result;
 
         }
-    
+
         public bool DeleteAccount(UserDTO user)
         {
             bool result = false;
-            UserModel foundUser = GetUserbyUserName(user.Username);
-            if(Login(user) == null)
+            UserModel foundUser = GetUserbyUsername(user.Username);
+            if (Login(user) == null)
             {
                 return result;
             }
@@ -172,15 +182,27 @@ namespace sheargenius_backend.Services
             {
                 _dataContext.Users.Remove(foundUser);
                 _dataContext.SaveChanges();
-                result = true;
+                result = _dataContext.SaveChanges() != 0;
             }
             return result;
         }
 
-        // public bool EditAccount(UserDTO user)
-        // {
-            
-        // }
+        public bool EditAccount(UserModel foundUser, UserModel updatedUser)
+        {
+            foundUser.Username = foundUser.Username;
+            foundUser.AccountType = updatedUser.AccountType;
+            foundUser.Name = updatedUser.Name;
+            foundUser.Bio = updatedUser.Bio;
+            foundUser.Email = updatedUser.Email;
+            foundUser.ShopName = updatedUser.ShopName;
+            foundUser.Address = updatedUser.Address;
+            foundUser.City = updatedUser.State;
+            foundUser.State = updatedUser.City;
+            foundUser.ZIP = updatedUser.ZIP;
+            _dataContext.Users.Update(foundUser);
+            bool result = _dataContext.SaveChanges() != 0;
+            return result;
+        }
 
     }
 }
