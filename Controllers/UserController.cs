@@ -13,10 +13,8 @@ namespace sheargenius_backend.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        //dependency injection
         private readonly UserServices _userServices;
 
-        //constructor
         public UserController(UserServices userServices)
         {
             _userServices = userServices;

@@ -27,7 +27,8 @@ namespace sheargenius_backend.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ZIP = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ZIP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pfp = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

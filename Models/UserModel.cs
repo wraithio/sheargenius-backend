@@ -20,5 +20,6 @@ namespace sheargenius_backend.Models
         public string? City {get;set;}
         public string? State {get;set;}
         public string? ZIP {get;set;}
+        public string? Pfp {get;set;}
     }
 }

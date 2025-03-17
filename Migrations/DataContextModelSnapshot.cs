@@ -50,6 +50,9 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Pfp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
 

@@ -11,7 +11,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250313202122_init")]
+    [Migration("20250315212757_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -51,6 +51,9 @@ namespace sheargenius_backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pfp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Salt")

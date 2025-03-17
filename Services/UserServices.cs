@@ -47,6 +47,7 @@ namespace sheargenius_backend.Services
                 userToAdd.City = "";
                 userToAdd.State = "";
                 userToAdd.ZIP = "";
+                userToAdd.Pfp = "";
 
                 _dataContext.Users.Add(userToAdd);
                 result = _dataContext.SaveChanges() != 0;
@@ -136,7 +137,6 @@ namespace sheargenius_backend.Services
             return _dataContext.Users.SingleOrDefault(user => user.Username == username);
         }
 
-        //static restricts the function from grabbing data/variables from anywhere else like global variables (helps with naming conventions)
         private static bool VerifyPassword(string password, string salt, string hash)
         {
             byte[] saltBytes = Convert.FromBase64String(salt);
@@ -198,10 +198,12 @@ namespace sheargenius_backend.Services
             foundUser.City = updatedUser.State;
             foundUser.State = updatedUser.City;
             foundUser.ZIP = updatedUser.ZIP;
+            foundUser.Pfp = updatedUser.Pfp;
             _dataContext.Users.Update(foundUser);
             bool result = _dataContext.SaveChanges() != 0;
             return result;
         }
 
+        
     }
 }
