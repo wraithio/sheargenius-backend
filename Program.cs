@@ -14,6 +14,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UserServices>();
+builder.Services.AddScoped<PostServices>();
+
+var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+builder.Services.AddDbContext<DataContext>(options =>options.UseSqlServer(connectionString));
 
 builder.Services.AddCors(options =>{
     options.AddPolicy("AllowAll",
@@ -27,36 +31,27 @@ builder.Services.AddCors(options =>{
 var secretKey = builder.Configuration["JWT:key"];
 var signingCredentials = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
-var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
-builder.Services.AddDbContext<DataContext>(options =>options.UseSqlServer(connectionString));
 
 // our secret key should match the secret key that we use to issue the token
-builder.Services.AddAuthentication(options =>
+builder.Services.AddAuthentication(options => 
 {
+    // this line of code will set the authentification behaviour of our JWt Bearer
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    // sets the default behaviour for when our auth fails
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddJwtBearer(options =>
+.AddJwtBearer( options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        //this is setting our authenitication to know what to expect and check to see if our token is valid
-        //these options are defining what is valid in out token as well, and should coorelate to the options that we set upon generating our token
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        //this is a list of all the places a token should be allowed to get generated from
-        ValidIssuers = new[]
-        {
-            "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net"
-        },
-        //this is a list of all the places a token should be allowed to get used
-        ValidAudiences = new[]
-        {
-            "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net"
-        },
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)) // Secret key
+        ValidateIssuer = true, //check if the tokens issuer is valid
+        ValidateAudience = true, //check if the token's audience is valid  
+        ValidateLifetime = true, //ensures that our tokens haven't expired
+        ValidateIssuerSigningKey = true, //checking the tokens signature is valid
+
+        ValidIssuer = "http://localhost:5277",
+        ValidAudience = "http://localhost:5277",
+        IssuerSigningKey = signingCredentials
     };
 });
 //now this is set up, you can make a call to an endpoint that is protected by [Authoruze] by adding a "Authorization" header as the Key with a value of "Bearer (your token here)"
@@ -74,6 +69,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

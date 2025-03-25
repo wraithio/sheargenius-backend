@@ -20,9 +20,11 @@ namespace sheargenius_backend.Services
     {
 
         private readonly DataContext _dataContext;
-        public UserServices(DataContext dataContext)
+        private readonly IConfiguration _config;
+        public UserServices(DataContext dataContext, IConfiguration config)
         {
             _dataContext = dataContext;
+            _config = config;
         }
 
         public List<UserModel> SeeAllUsers()
@@ -85,17 +87,17 @@ namespace sheargenius_backend.Services
             if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) return null;
             return GenerateJWTToken(new List<Claim>());
         }
-        private string GenerateJWTToken(List<Claim> claim)
+        private string GenerateJWTToken(List<Claim> claims)
         {
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
 
             //Now to encrypt our secret key
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenOptions = new JwtSecurityToken(
-                issuer: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
-                audience: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
-                claims: new List<Claim>(),
+                issuer: "http://localhost:5277",
+                audience: "http://localhost:5277",
+                claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signingCredentials
             );
@@ -159,7 +161,7 @@ namespace sheargenius_backend.Services
         // DELETE ACCOUNT ON FRONT END WILL BE EDITACCOUNT ENDPOINT THEN TOGGLE IsDeleted bool FROM FALSE TO TRUE
         public async Task<bool> EditAccount(UserModel updatedUser)
         {
-            var foundUser = await GetUserbyUserId(updatedUser.Id);
+            var foundUser = await GetUserbyUsername(updatedUser.Username);
             foundUser.AccountType = updatedUser.AccountType;
             foundUser.Name = updatedUser.Name;
             foundUser.Bio = updatedUser.Bio;

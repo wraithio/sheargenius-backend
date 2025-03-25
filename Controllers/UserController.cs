@@ -26,7 +26,8 @@ namespace sheargenius_backend.Controllers
           //[FromBody] attribute better directs to where data will be passed from 
         public async Task<IActionResult> CreateUser([FromBody] UserDTO newUser)
         {
-            if(await _userServices.CreateUser(newUser)) return Ok(new {Success = true});
+            var success = await _userServices.CreateUser(newUser);
+            if(success) return Ok(new {Success = true});
             return BadRequest(new {Success = false, Message = "Username already exists..."});
             //above statement is being EVALUATED as a boolean, returns true or false
         }
@@ -43,7 +44,8 @@ namespace sheargenius_backend.Controllers
         [HttpPut("EditAccount")]
         public async Task<IActionResult> EditAccount([FromBody] UserModel updatedUser)
         {
-            if(_userServices.EditAccount(updatedUser) != null) return Ok(new {Success = true});
+            var success = await _userServices.EditAccount(updatedUser);
+            if(success) return Ok(new {Success = true});
             return BadRequest(new {Message = "Changes have not been saved..."});
         }
 
@@ -59,7 +61,8 @@ namespace sheargenius_backend.Controllers
 
         public async Task<IActionResult> DeleteAccount([FromBody] UserDTO user)
         {
-            if(await _userServices.DeleteAccount(user) != null) return Ok(new {Success = true});
+            var success = await _userServices.DeleteAccount(user);
+            if(success) return Ok(new {Success = true});
             return BadRequest(new {Message = "Changes have not been saved..."});
         }
 
