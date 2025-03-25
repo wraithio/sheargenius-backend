@@ -95,8 +95,8 @@ namespace sheargenius_backend.Services
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenOptions = new JwtSecurityToken(
-                issuer: "http://localhost:5277",
-                audience: "http://localhost:5277",
+                issuer: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
+                audience: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signingCredentials
