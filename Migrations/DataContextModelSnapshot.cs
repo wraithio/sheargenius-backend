@@ -43,7 +43,7 @@ namespace sheargenius_backend.Migrations
 
                     b.HasIndex("PostModelId");
 
-                    b.ToTable("CommentModel");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("sheargenius_backend.Models.PostModel", b =>

@@ -58,7 +58,7 @@ namespace sheargenius_backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CommentModel",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -69,17 +69,17 @@ namespace sheargenius_backend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CommentModel", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CommentModel_Posts_PostModelId",
+                        name: "FK_Comments_Posts_PostModelId",
                         column: x => x.PostModelId,
                         principalTable: "Posts",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CommentModel_PostModelId",
-                table: "CommentModel",
+                name: "IX_Comments_PostModelId",
+                table: "Comments",
                 column: "PostModelId");
         }
 
@@ -87,7 +87,7 @@ namespace sheargenius_backend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CommentModel");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Users");

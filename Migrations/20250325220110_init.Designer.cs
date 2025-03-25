@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250325215510_init")]
+    [Migration("20250325220110_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -46,7 +46,7 @@ namespace sheargenius_backend.Migrations
 
                     b.HasIndex("PostModelId");
 
-                    b.ToTable("CommentModel");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("sheargenius_backend.Models.PostModel", b =>
