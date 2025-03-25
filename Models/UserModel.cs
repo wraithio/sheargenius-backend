@@ -21,5 +21,7 @@ namespace sheargenius_backend.Models
         public string? State {get;set;}
         public string? ZIP {get;set;}
         public string? Pfp {get;set;}
+        public bool IsDeleted {get;set;}
+        public bool IsPublished {get;set;}
     }
 }

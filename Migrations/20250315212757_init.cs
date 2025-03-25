@@ -28,7 +28,9 @@ namespace sheargenius_backend.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ZIP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pfp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Pfp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {

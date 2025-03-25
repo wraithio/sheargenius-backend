@@ -71,6 +71,13 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("ZIP")
                         .HasColumnType("nvarchar(max)");
 
+                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
                     b.HasKey("Id");
 
                     b.ToTable("Users");
