@@ -24,11 +24,13 @@ builder.Services.AddCors(options =>{
     });
 });
 
+var secretKey = builder.Configuration["JWT:key"];
+var signingCredentials = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddDbContext<DataContext>(options =>options.UseSqlServer(connectionString));
 
 // our secret key should match the secret key that we use to issue the token
-var secretKey = builder.Configuration["Jwt:Key"] ?? "superSecretKey@345";
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

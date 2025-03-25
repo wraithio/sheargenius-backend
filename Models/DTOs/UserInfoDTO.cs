@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace sheargenius_backend.Models
+namespace sheargenius_backend.Models.DTOs
 {
-    public class UserModel
+    public class UserInfoDTO
     {
         public int Id {get;set;}
         public string? Username {get;set;}
-        public string? Salt {get;set;}
-        public string? Hash {get;set;}
         public string? AccountType {get;set;}
         public string? Name {get;set;}
         public string? Bio {get;set;}

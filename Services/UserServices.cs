@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using sheargenius_backend.Models.DTOs;
 
 namespace sheargenius_backend.Services
 {
@@ -47,6 +48,7 @@ namespace sheargenius_backend.Services
             userToAdd.State = "";
             userToAdd.ZIP = "";
             userToAdd.Pfp = "";
+            userToAdd.IsDeleted = false;
 
             await _dataContext.Users.AddAsync(userToAdd);
             return await _dataContext.SaveChangesAsync() != 0;
@@ -107,6 +109,17 @@ namespace sheargenius_backend.Services
         }
 
         public async Task<UserModel> GetUserbyUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
+        public async Task<UserInfoDTO> GetUserInfoByUsername(string username)
+        {
+             var currentUser = await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
+
+            UserInfoDTO user = new();
+
+            user.Id = currentUser.Id;
+            user.Username = currentUser.Username;
+
+            return user;
+        }
         public async Task<UserModel> GetUserbyUserId(int id) => await _dataContext.Users.FindAsync(id);
 
         private static bool VerifyPassword(string password, string salt, string hash)
@@ -160,7 +173,6 @@ namespace sheargenius_backend.Services
             _dataContext.Users.Update(foundUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }
-
 
     }
 }
