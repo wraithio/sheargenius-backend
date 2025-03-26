@@ -7,6 +7,8 @@ namespace sheargenius_backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    // Remove this to host on swagger
+    // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly UserServices _userServices;
@@ -37,7 +39,7 @@ namespace sheargenius_backend.Controllers
         {
             string stringToken = await _userServices.Login(user);
             if (stringToken != null) return Ok(new { Token = stringToken });
-            return Unauthorized(new { Message = "Login was unsuccessful. Invalid email or password." });
+            return Unauthorized(new { Message = "Login was unsuccessful. Invalid username or password." });
 
         }
 
@@ -66,12 +68,12 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new {Message = "Changes have not been saved..."});
         }
 
-        [Authorize]
-        [HttpGet]
-        [Route("AuthenticUser")]
-        public string AuthenticUserCheck()
-        {
-            return "You are logged in and allowed to be here.";
-        }
+        // [Authorize]
+        // [HttpGet]
+        // [Route("AuthenticUser")]
+        // public string AuthenticUserCheck()
+        // {
+        //     return "You are logged in and allowed to be here.";
+        // }
     }
 }

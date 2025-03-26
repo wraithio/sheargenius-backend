@@ -84,7 +84,7 @@ namespace sheargenius_backend.Services
             UserModel foundUser = await GetUserbyUsername(user.Username);
 
             if (foundUser == null) return null;
-            if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) return null;
+            if (!VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) return null;
             return GenerateJWTToken(new List<Claim>());
         }
         private string GenerateJWTToken(List<Claim> claims)
@@ -95,8 +95,8 @@ namespace sheargenius_backend.Services
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokenOptions = new JwtSecurityToken(
-                issuer: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
-                audience: "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
+                issuer: "https://sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net/",
+                audience: "https://sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net/",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signingCredentials

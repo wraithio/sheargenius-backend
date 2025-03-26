@@ -49,8 +49,8 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true, //ensures that our tokens haven't expired
         ValidateIssuerSigningKey = true, //checking the tokens signature is valid
 
-        ValidIssuer = "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
-        ValidAudience = "sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net",
+        ValidIssuer = "https://sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net/",
+        ValidAudience = "https://sheargenius-awakhjcph2deb6b9.westus-01.azurewebsites.net/",
         IssuerSigningKey = signingCredentials
     };
 });
