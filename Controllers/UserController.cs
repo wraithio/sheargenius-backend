@@ -68,12 +68,13 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new {Message = "Changes have not been saved..."});
         }
 
-        // [Authorize]
-        // [HttpGet]
-        // [Route("AuthenticUser")]
-        // public string AuthenticUserCheck()
-        // {
-        //     return "You are logged in and allowed to be here.";
-        // }
+        [HttpGet("GetUserInfoByUsername/{username}")]
+        public async Task<IActionResult> GetUserInfoByUsername(string username)
+        {
+            var user = await _userServices.GetUserInfoByUsername(username);
+            
+            if(user != null) return Ok(user);
+            return BadRequest(new {Message = "No user found..."});
+        }
     }
 }
