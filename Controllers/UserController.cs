@@ -2,6 +2,7 @@ using sheargenius_backend.Models;
 using sheargenius_backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using sheargenius_backend.Models.DTOs;
 
 namespace sheargenius_backend.Controllers
 {
@@ -26,7 +27,7 @@ namespace sheargenius_backend.Controllers
 
         [HttpPost("CreateUser")]
           //[FromBody] attribute better directs to where data will be passed from 
-        public async Task<IActionResult> CreateUser([FromBody] UserDTO newUser)
+        public async Task<IActionResult> CreateUser([FromBody] NewUserDTO newUser)
         {
             var success = await _userServices.CreateUser(newUser);
             if(success) return Ok(new {Success = true});
