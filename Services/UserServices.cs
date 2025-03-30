@@ -32,7 +32,7 @@ namespace sheargenius_backend.Services
             return _dataContext.Users.ToList();
         }
 
-        public async Task<bool> CreateUser(UserDTO newUser)
+        public async Task<bool> CreateUser(NewUserDTO newUser)
         {
             if (await DoesUserExist(newUser.Username)) return false;
             UserModel userToAdd = new();
@@ -40,19 +40,36 @@ namespace sheargenius_backend.Services
             PasswordDTO hashedPassword = HashPassword(newUser.Password);
             userToAdd.Hash = hashedPassword.Hash;
             userToAdd.Salt = hashedPassword.Salt;
-            userToAdd.AccountType = "";
-            userToAdd.Name = "";
-            userToAdd.Bio = "";
-            userToAdd.Email = "";
-            userToAdd.ShopName = "";
-            userToAdd.Address = "";
-            userToAdd.City = "";
-            userToAdd.State = "";
-            userToAdd.ZIP = "";
-            userToAdd.Pfp = "";
+            userToAdd.AccountType = newUser.AccountType;
+            userToAdd.Name = newUser.Name;
+            userToAdd.Bio = newUser.Bio;
+            userToAdd.Email = newUser.Email;
+            userToAdd.ShopName = newUser.ShopName;
+            userToAdd.Address = newUser.Address;
+            userToAdd.City = newUser.City;
+            userToAdd.State = newUser.State;
+            userToAdd.ZIP = newUser.ZIP;
+            userToAdd.Pfp = newUser.Pfp;
             userToAdd.IsDeleted = false;
 
             await _dataContext.Users.AddAsync(userToAdd);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+
+        public async Task<bool> EditAccount(UserModel updatedUser)
+        {
+            var foundUser = await GetUserbyUsername(updatedUser.Username);
+            foundUser.AccountType = updatedUser.AccountType;
+            foundUser.Name = updatedUser.Name;
+            foundUser.Bio = updatedUser.Bio;
+            foundUser.Email = updatedUser.Email;
+            foundUser.ShopName = updatedUser.ShopName;
+            foundUser.Address = updatedUser.Address;
+            foundUser.City = updatedUser.State;
+            foundUser.State = updatedUser.City;
+            foundUser.ZIP = updatedUser.ZIP;
+            foundUser.Pfp = updatedUser.Pfp;
+            _dataContext.Users.Update(foundUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
@@ -113,7 +130,7 @@ namespace sheargenius_backend.Services
         public async Task<UserModel> GetUserbyUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
         public async Task<UserInfoDTO> GetUserInfoByUsername(string username)
         {
-             var currentUser = await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
+            var currentUser = await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
 
             UserInfoDTO user = new();
 
@@ -159,22 +176,5 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
         // DELETE ACCOUNT ON FRONT END WILL BE EDITACCOUNT ENDPOINT THEN TOGGLE IsDeleted bool FROM FALSE TO TRUE
-        public async Task<bool> EditAccount(UserModel updatedUser)
-        {
-            var foundUser = await GetUserbyUsername(updatedUser.Username);
-            foundUser.AccountType = updatedUser.AccountType;
-            foundUser.Name = updatedUser.Name;
-            foundUser.Bio = updatedUser.Bio;
-            foundUser.Email = updatedUser.Email;
-            foundUser.ShopName = updatedUser.ShopName;
-            foundUser.Address = updatedUser.Address;
-            foundUser.City = updatedUser.State;
-            foundUser.State = updatedUser.City;
-            foundUser.ZIP = updatedUser.ZIP;
-            foundUser.Pfp = updatedUser.Pfp;
-            _dataContext.Users.Update(foundUser);
-            return await _dataContext.SaveChangesAsync() != 0;
-        }
-
     }
 }
