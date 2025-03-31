@@ -69,10 +69,20 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new {Message = "Changes have not been saved..."});
         }
 
+        // [HttpGet("GetUserByUsername/{username}")]
+        // public async Task<IActionResult> GetUserByUsername(string username)
+        // {
+        //     var user = await _userServices.GetUserByUsername(username);
+            
+        //     if(user != null) return Ok(user);
+        //     return BadRequest(new {Message = "No user found..."});
+        // }
+
         [HttpGet("GetUserInfoByUsername/{username}")]
         public async Task<IActionResult> GetUserInfoByUsername(string username)
         {
-            var user = await _userServices.GetUserInfoByUsername(username);
+            // var user = await _userServices.GetUserInfoByUsername(username);
+            var user = await _userServices.GetUserByUsername(username);
             
             if(user != null) return Ok(user);
             return BadRequest(new {Message = "No user found..."});

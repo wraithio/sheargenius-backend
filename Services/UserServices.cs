@@ -58,7 +58,7 @@ namespace sheargenius_backend.Services
 
         public async Task<bool> EditAccount(UserModel updatedUser)
         {
-            var foundUser = await GetUserbyUsername(updatedUser.Username);
+            var foundUser = await GetUserByUsername(updatedUser.Username);
             foundUser.AccountType = updatedUser.AccountType;
             foundUser.Name = updatedUser.Name;
             foundUser.Bio = updatedUser.Bio;
@@ -98,7 +98,7 @@ namespace sheargenius_backend.Services
 
         public async Task<string> Login(UserDTO user)
         {
-            UserModel foundUser = await GetUserbyUsername(user.Username);
+            UserModel foundUser = await GetUserByUsername(user.Username);
 
             if (foundUser == null) return null;
             if (!VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) return null;
@@ -127,7 +127,7 @@ namespace sheargenius_backend.Services
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
 
-        public async Task<UserModel> GetUserbyUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
+        public async Task<UserModel> GetUserByUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
         public async Task<UserInfoDTO> GetUserInfoByUsername(string username)
         {
             var currentUser = await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
@@ -139,7 +139,7 @@ namespace sheargenius_backend.Services
 
             return user;
         }
-        public async Task<UserModel> GetUserbyUserId(int id) => await _dataContext.Users.FindAsync(id);
+        public async Task<UserModel> GetUserByUserId(int id) => await _dataContext.Users.FindAsync(id);
 
         private static bool VerifyPassword(string password, string salt, string hash)
         {
@@ -155,7 +155,7 @@ namespace sheargenius_backend.Services
 
         public async Task<bool> UpdatePassword(UserDTO user)
         {
-            var foundUser = await GetUserbyUsername(user.Username);
+            var foundUser = await GetUserByUsername(user.Username);
 
             if (foundUser == null) return false;
 
@@ -169,7 +169,7 @@ namespace sheargenius_backend.Services
 
         public async Task<bool> DeleteAccount(UserDTO user)
         {
-            UserModel foundUser = await GetUserbyUsername(user.Username);
+            UserModel foundUser = await GetUserByUsername(user.Username);
             if (Login(user) == null) return false;
 
             if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) _dataContext.Users.Remove(foundUser);
