@@ -11,6 +11,7 @@ namespace sheargenius_backend.Models
         public string? Username {get;set;}
         public string? Salt {get;set;}
         public string? Hash {get;set;}
+        public string? Date {get;set;}
         public string? AccountType {get;set;}
         public string? Name {get;set;}
         public string? Bio {get;set;}

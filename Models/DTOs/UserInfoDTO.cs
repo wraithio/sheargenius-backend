@@ -10,6 +10,7 @@ namespace sheargenius_backend.Models.DTOs
         public int Id {get;set;}
         public string? Username {get;set;}
         public string? Password {get;set;}
+        public string? Date {get;set;}
         public string? AccountType {get;set;}
         public string? Name {get;set;}
         public string? Bio {get;set;}
