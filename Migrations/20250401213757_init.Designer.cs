@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250401213202_init")]
+    [Migration("20250401213757_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -139,6 +139,12 @@ namespace sheargenius_backend.Migrations
 
                     b.Property<int>("FollowerCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Followers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Following")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FollowingCount")
                         .HasColumnType("int");

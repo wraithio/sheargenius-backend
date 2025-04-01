@@ -137,6 +137,12 @@ namespace sheargenius_backend.Migrations
                     b.Property<int>("FollowerCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Followers")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Following")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FollowingCount")
                         .HasColumnType("int");
 
