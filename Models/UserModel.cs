@@ -14,6 +14,7 @@ namespace sheargenius_backend.Models
         public string? Date { get; set; }
         public string? AccountType { get; set; }
         public int Rating { get; set; }
+        public int RatingCount { get; set; }
         public string[]? Followers { get; set; }
         public string[]? Following { get; set; }
         public int FollowerCount { get; set; }

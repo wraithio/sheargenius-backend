@@ -35,23 +35,34 @@ namespace sheargenius_backend.Services
         public async Task<bool> CreateUser(UserInfoDTO newUser)
         {
             if (await DoesUserExist(newUser.Username)) return false;
-            UserModel userToAdd = new();
-            userToAdd.Username = newUser.Username;
             PasswordDTO hashedPassword = HashPassword(newUser.Password);
-            userToAdd.Hash = hashedPassword.Hash;
-            userToAdd.Salt = hashedPassword.Salt;
-            userToAdd.AccountType = newUser.AccountType;
-            userToAdd.Name = newUser.Name;
-            userToAdd.Bio = newUser.Bio;
-            userToAdd.Email = newUser.Email;
-            userToAdd.ShopName = newUser.ShopName;
-            userToAdd.Address = newUser.Address;
-            userToAdd.City = newUser.City;
-            userToAdd.State = newUser.State;
-            userToAdd.ZIP = newUser.ZIP;
-            userToAdd.Pfp = newUser.Pfp;
-            userToAdd.IsDeleted = false;
 
+            var userToAdd = new UserModel
+            {
+                Username = newUser.Username,
+                Hash = hashedPassword.Hash,
+                Salt = hashedPassword.Salt,
+                Date = newUser.Date,
+                AccountType = newUser.AccountType,
+                RatingCount = newUser.RatingCount,
+                Rating = newUser.Rating,
+                Followers = newUser.Followers,
+                Following = newUser.Following,
+                FollowerCount = newUser.FollowerCount,
+                FollowingCount = newUser.FollowingCount,
+                SecurityAnswer = newUser.SecurityAnswer,
+                SecurityQuestion = newUser.SecurityQuestion,
+                Name = newUser.Name,
+                Bio = newUser.Bio,
+                Email = newUser.Email,
+                ShopName = newUser.ShopName,
+                Address = newUser.Address,
+                City = newUser.City,
+                State = newUser.State,
+                ZIP = newUser.ZIP,
+                Pfp = newUser.Pfp,
+                IsDeleted = false
+            };
             await _dataContext.Users.AddAsync(userToAdd);
             return await _dataContext.SaveChangesAsync() != 0;
         }

@@ -58,6 +58,7 @@ namespace sheargenius_backend.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
+                    RatingCount = table.Column<int>(type: "int", nullable: false),
                     Followers = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Following = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FollowerCount = table.Column<int>(type: "int", nullable: false),
