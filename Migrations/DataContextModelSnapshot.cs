@@ -134,11 +134,11 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FollowerCount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FollowerCount")
+                        .HasColumnType("int");
 
-                    b.Property<string>("FollowingCount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FollowingCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
@@ -152,8 +152,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Pfp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rating")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
