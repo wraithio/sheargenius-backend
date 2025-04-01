@@ -32,7 +32,7 @@ namespace sheargenius_backend.Services
             return _dataContext.Users.ToList();
         }
 
-        public async Task<bool> CreateUser(NewUserDTO newUser)
+        public async Task<bool> CreateUser(UserInfoDTO newUser)
         {
             if (await DoesUserExist(newUser.Username)) return false;
             UserModel userToAdd = new();

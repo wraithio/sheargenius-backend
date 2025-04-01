@@ -7,6 +7,7 @@ namespace sheargenius_backend.Models.DTOs
 {
     public class NewUserDTO
     {
+        //OBSOLETE---------------------------------------------------------------------------------
         public int Id {get;set;}
         public string? Username {get;set;}
         public string? Password {get;set;}

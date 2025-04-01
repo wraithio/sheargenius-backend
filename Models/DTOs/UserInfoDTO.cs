@@ -15,6 +15,11 @@ namespace sheargenius_backend.Models.DTOs
         public string? Name {get;set;}
         public string? Bio {get;set;}
         public string? Email {get;set;}
+        public string? Rating {get;set;}
+        public string? FollowerCount {get;set;}
+        public string? FollowingCount {get;set;}
+        public string? SecurityQuestion {get;set;}
+        public string? SecurityAnswer {get;set;}
         public string? ShopName {get;set;}
         public string? Address {get;set;}
         public string? City {get;set;}

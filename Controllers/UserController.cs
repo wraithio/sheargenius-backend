@@ -27,7 +27,7 @@ namespace sheargenius_backend.Controllers
 
         [HttpPost("CreateUser")]
           //[FromBody] attribute better directs to where data will be passed from 
-        public async Task<IActionResult> CreateUser([FromBody] NewUserDTO newUser)
+        public async Task<IActionResult> CreateUser([FromBody] UserInfoDTO newUser)
         {
             var success = await _userServices.CreateUser(newUser);
             if(success) return Ok(new {Success = true});
