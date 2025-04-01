@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250325220110_init")]
+    [Migration("20250401190747_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -87,6 +87,28 @@ namespace sheargenius_backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("sheargenius_backend.Models.ScheduleModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Days")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Times")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Schedules");
                 });
 
             modelBuilder.Entity("sheargenius_backend.Models.UserModel", b =>

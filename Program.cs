@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<PostServices>();
+builder.Services.AddScoped<ScheduleServices>();
 
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddDbContext<DataContext>(options =>options.UseSqlServer(connectionString));

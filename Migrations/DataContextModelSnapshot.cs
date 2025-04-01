@@ -86,6 +86,28 @@ namespace sheargenius_backend.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("sheargenius_backend.Models.ScheduleModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Days")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Times")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Schedules");
+                });
+
             modelBuilder.Entity("sheargenius_backend.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
