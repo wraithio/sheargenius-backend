@@ -26,12 +26,12 @@ namespace sheargenius_backend.Controllers
         }
 
         [HttpPost("CreateUser")]
-          //[FromBody] attribute better directs to where data will be passed from 
+        //[FromBody] attribute better directs to where data will be passed from 
         public async Task<IActionResult> CreateUser([FromBody] UserInfoDTO newUser)
         {
             var success = await _userServices.CreateUser(newUser);
-            if(success) return Ok(new {Success = true});
-            return BadRequest(new {Success = false, Message = "Username already exists..."});
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Success = false, Message = "Username already exists..." });
             //above statement is being EVALUATED as a boolean, returns true or false
         }
 
@@ -48,8 +48,8 @@ namespace sheargenius_backend.Controllers
         public async Task<IActionResult> EditAccount([FromBody] UserModel updatedUser)
         {
             var success = await _userServices.EditAccount(updatedUser);
-            if(success) return Ok(new {Success = true});
-            return BadRequest(new {Message = "Changes have not been saved..."});
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Changes have not been saved..." });
         }
 
         // [HttpPut("UpdatePassword")]
@@ -65,15 +65,15 @@ namespace sheargenius_backend.Controllers
         public async Task<IActionResult> DeleteAccount([FromBody] UserDTO user)
         {
             var success = await _userServices.DeleteAccount(user);
-            if(success) return Ok(new {Success = true});
-            return BadRequest(new {Message = "Changes have not been saved..."});
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Changes have not been saved..." });
         }
 
         // [HttpGet("GetUserByUsername/{username}")]
         // public async Task<IActionResult> GetUserByUsername(string username)
         // {
         //     var user = await _userServices.GetUserByUsername(username);
-            
+
         //     if(user != null) return Ok(user);
         //     return BadRequest(new {Message = "No user found..."});
         // }
@@ -83,9 +83,19 @@ namespace sheargenius_backend.Controllers
         {
             // var user = await _userServices.GetUserInfoByUsername(username);
             var user = await _userServices.GetUserByUsername(username);
+
+            if (user != null) return Ok(user);
+            return BadRequest(new { Message = "No user found..." });
+        }
+
+         [HttpGet("GetProfileInfoByUsername/{username}")]
+        public async Task<IActionResult> GetProfileInfoByUsername(string username)
+        {
+            // var user = await _userServices.GetUserInfoByUsername(username);
+            var user = await _userServices.GetProfileInfoByUsername(username);
             
-            if(user != null) return Ok(user);
-            return BadRequest(new {Message = "No user found..."});
+            if (user != null) return Ok(user);
+            return BadRequest(new { Message = "No user found..." });
         }
     }
 }

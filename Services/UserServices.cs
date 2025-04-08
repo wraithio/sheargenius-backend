@@ -139,7 +139,7 @@ namespace sheargenius_backend.Services
         }
 
         public async Task<UserModel> GetUserByUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
-        public async Task<UserInfoDTO> GetUserInfoByUsername(string username)
+        public async Task<UserInfoDTO> GetProfileInfoByUsername(string username)
         {
             var currentUser = await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
 
@@ -147,7 +147,27 @@ namespace sheargenius_backend.Services
 
             user.Id = currentUser.Id;
             user.Username = currentUser.Username;
-
+            user.Password = "*************";
+            user.Date = currentUser.Date;
+            user.AccountType = currentUser.AccountType;
+            user.Name = currentUser.Name;
+            user.Bio = currentUser.Bio;
+            user.Email = currentUser.Email;
+            user.Rating = currentUser.Rating;
+            user.RatingCount = currentUser.RatingCount;
+            user.Followers = currentUser.Followers;
+            user.Following = currentUser.Following;
+            user.FollowerCount = currentUser.FollowerCount;
+            user.FollowingCount = currentUser.FollowingCount;
+            user.SecurityQuestion = currentUser.SecurityQuestion;
+            user.SecurityAnswer = currentUser.SecurityAnswer;
+            user.ShopName = currentUser.ShopName;
+            user.Address = currentUser.Address;
+            user.City = currentUser.City;
+            user.State = currentUser.State;
+            user.ZIP = currentUser.ZIP;
+            user.Pfp = currentUser.Pfp;
+            user.IsDeleted = currentUser.IsDeleted;
             return user;
         }
         public async Task<UserModel> GetUserByUserId(int id) => await _dataContext.Users.FindAsync(id);
