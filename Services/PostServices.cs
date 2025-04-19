@@ -40,9 +40,9 @@ namespace sheargenius_backend.Services
         // FindAsync searches by the primary key (aka our id) we use this over SingleOrDefaultAsync bc it is more effecient
         private async Task<PostModel> GetPostByIdAsync(int id) => await _dataContext.Posts.FindAsync(id);
 
-        public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id).ToListAsync();
+        public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
 
-        public async Task<List<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category).ToListAsync();
+        public async Task<List<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
         
         
     }
