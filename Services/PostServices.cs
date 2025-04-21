@@ -21,6 +21,24 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
+        public async Task<bool> DeletePostAsync(int id)
+        {
+            var postToDelete = await GetPostByIdAsync(id);
+            if(postToDelete == null) return false;
+            postToDelete.IsDeleted = true;
+            _dataContext.Posts.Update(postToDelete);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+
+        public async Task<bool> AddCommentAsync(CommentModel comment, int postId)
+        {
+            var postToComment = await GetPostByIdAsync(postId);
+            if(postToComment == null) return false;
+            postToComment.Comments.Add(comment);
+            _dataContext.Posts.Update(postToComment);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+
         public async Task<bool> EditPostAsync(PostModel post)
         {
             var postToEdit = await GetPostByIdAsync(post.Id);

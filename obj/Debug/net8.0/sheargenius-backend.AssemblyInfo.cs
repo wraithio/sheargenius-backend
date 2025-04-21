@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sheargenius-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42055335981607aa21f38357a5b67172e784f8fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b63b0510297072921975b8c6cca02a53f8cab63")]
 [assembly: System.Reflection.AssemblyProductAttribute("sheargenius-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sheargenius-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
