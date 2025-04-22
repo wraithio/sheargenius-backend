@@ -24,7 +24,7 @@ namespace sheargenius_backend.Services
         public async Task<bool> DeletePostAsync(int id)
         {
             var postToDelete = await GetPostByIdAsync(id);
-            if(postToDelete == null) return false;
+            if (postToDelete == null) return false;
             postToDelete.IsDeleted = true;
             _dataContext.Posts.Update(postToDelete);
             return await _dataContext.SaveChangesAsync() != 0;
@@ -32,17 +32,19 @@ namespace sheargenius_backend.Services
 
         public async Task<bool> AddCommentAsync(CommentModel comment)
         {
-            var postToComment = await GetPostByIdAsync(comment.Id);
-            if(postToComment == null) return false;
+            PostModel postToComment = await GetPostByIdAsync(comment.Id);
+            if (postToComment == null) return false;
+            if(postToComment.Comments == null) postToComment.Comments = new List<CommentModel>();
             postToComment.Comments.Add(comment);
             _dataContext.Posts.Update(postToComment);
+
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
         public async Task<bool> EditPostAsync(PostModel post)
         {
             var postToEdit = await GetPostByIdAsync(post.Id);
-            if(postToEdit == null) return false;
+            if (postToEdit == null) return false;
             postToEdit.Caption = post.Caption;
             postToEdit.PublisherName = post.PublisherName;
             postToEdit.Image = post.Image;
@@ -61,7 +63,7 @@ namespace sheargenius_backend.Services
         public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
 
         public async Task<List<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
-        
-        
+
+
     }
 }
