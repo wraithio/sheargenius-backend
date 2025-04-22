@@ -30,9 +30,9 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
-        public async Task<bool> AddCommentAsync(CommentModel comment, int postId)
+        public async Task<bool> AddCommentAsync(CommentModel comment)
         {
-            var postToComment = await GetPostByIdAsync(postId);
+            var postToComment = await GetPostByIdAsync(comment.Id);
             if(postToComment == null) return false;
             postToComment.Comments.Add(comment);
             _dataContext.Posts.Update(postToComment);
