@@ -9,6 +9,7 @@ namespace sheargenius_backend.Models
     public class CommentModel
     {
         public int Id {get;set;}
+        public int postId {get;set;}
         public string? username {get;set;}
         public string? comment {get;set;}
     }

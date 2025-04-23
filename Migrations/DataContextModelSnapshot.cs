@@ -36,6 +36,9 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("postId")
+                        .HasColumnType("int");
+
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
 
@@ -72,8 +75,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
+                    b.Property<string>("Likes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PublisherName")
                         .HasColumnType("nvarchar(max)");

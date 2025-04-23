@@ -43,7 +43,7 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No post was found..." });
         }
         
-        [HttpPut("AddComment")]
+        [HttpPost("AddComment")]
         public async Task<IActionResult> AddComment([FromBody] CommentModel comment)
         {
             var success = await _postServices.AddCommentAsync(comment);

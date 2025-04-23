@@ -21,7 +21,7 @@ namespace sheargenius_backend.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Caption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Likes = table.Column<int>(type: "int", nullable: false),
+                    Likes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPublished = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -87,6 +87,7 @@ namespace sheargenius_backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    postId = table.Column<int>(type: "int", nullable: false),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostModelId = table.Column<int>(type: "int", nullable: true)

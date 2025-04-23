@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250401224455_init")]
+    [Migration("20250423180759_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -38,6 +38,9 @@ namespace sheargenius_backend.Migrations
 
                     b.Property<string>("comment")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("postId")
+                        .HasColumnType("int");
 
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
@@ -75,8 +78,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
+                    b.Property<string>("Likes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PublisherName")
                         .HasColumnType("nvarchar(max)");

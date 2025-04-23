@@ -32,11 +32,12 @@ namespace sheargenius_backend.Services
 
         public async Task<bool> AddCommentAsync(CommentModel comment)
         {
-            PostModel postToComment = await GetPostByIdAsync(comment.Id);
+            PostModel postToComment = await GetPostByIdCommentsAsync(comment.postId);
             if (postToComment == null) return false;
-            if(postToComment.Comments == null) postToComment.Comments = new List<CommentModel>();
+            if(postToComment.Comments == null) 
+            postToComment.Comments = [];
+
             postToComment.Comments.Add(comment);
-            _dataContext.Posts.Update(postToComment);
 
             return await _dataContext.SaveChangesAsync() != 0;
         }
@@ -59,6 +60,7 @@ namespace sheargenius_backend.Services
 
         // FindAsync searches by the primary key (aka our id) we use this over SingleOrDefaultAsync bc it is more effecient
         private async Task<PostModel> GetPostByIdAsync(int id) => await _dataContext.Posts.FindAsync(id);
+        private async Task<PostModel> GetPostByIdCommentsAsync(int id) => await _dataContext.Posts.AsNoTracking().Include(m => m.Comments).FirstOrDefaultAsync(m => m.Id == id);
 
         public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
 
