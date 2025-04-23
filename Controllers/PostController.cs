@@ -27,6 +27,31 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No Posts" });
         }
 
+        [HttpGet("GetAllComments")]
+        public async Task<IActionResult> GetAllComments()
+        {
+            var posts = await _postServices.GetCommentsAsync();
+            if (posts != null) return Ok(posts);
+            return BadRequest(new { Message = "No Comments" });
+        }
+
+        [HttpGet("GetCommentsByPostIdAsync")]
+        public async Task<IActionResult> GetCommentsByPostIdAsync(int id)
+        {
+            var posts = await _postServices.GetCommentsByPostIdAsync(id);
+            if (posts != null) return Ok(posts);
+            return BadRequest(new { Message = "No comments..." });
+        }
+
+        [HttpDelete("DeleteComment")]
+        public async Task<IActionResult> DeleteCommentAsync(int id)
+        {
+            var success = await _postServices.DeleteCommentAsync(id);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "No comment was found..." });
+        }
+        
+
         [HttpPost("AddPost")]
         public async Task<IActionResult> AddPost([FromBody] PostModel post)
         {
@@ -51,7 +76,7 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No post was found..." });
         }
 
-        [HttpDelete("DeletePost")]
+        [HttpPut("DeletePost")]
         public async Task<IActionResult> DeletePost([FromBody] PostModel post)
         {
             var success = await _postServices.EditPostAsync(post);
