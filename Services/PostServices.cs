@@ -32,6 +32,14 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
+        public async Task<bool> AdminDeletePostAsync(int id)
+        {
+            var postToDelete = await GetPostByIdAsync(id);
+            if (postToDelete == null) return false;
+            _dataContext.Posts.Remove(postToDelete);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+
         public async Task<bool> AddCommentAsync(CommentModel comment)
         {
             Console.WriteLine(comment);
@@ -39,7 +47,6 @@ namespace sheargenius_backend.Services
             if (postToComment == null) return false;
             if(postToComment.Comments == null) 
             postToComment.Comments = [];
-
             postToComment.Comments.Add(comment);
             _dataContext.Posts.Update(postToComment);
             return await _dataContext.SaveChangesAsync() != 0;

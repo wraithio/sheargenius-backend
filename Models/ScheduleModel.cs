@@ -10,6 +10,7 @@ namespace sheargenius_backend.Models
         public int Id {get;set;}
         public string? Username {get;set;}
         public string[]? Days {get;set;}
-        public string[]? Times {get;set;}
+        // public string[]? Times {get;set;}
+        // public string[]? TuesTimes {get;set;}
     }
 }

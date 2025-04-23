@@ -202,7 +202,6 @@ namespace sheargenius_backend.Services
         {
             UserModel foundUser = await GetUserByUsername(user.Username);
             if (Login(user) == null) return false;
-
             if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) _dataContext.Users.Remove(foundUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }

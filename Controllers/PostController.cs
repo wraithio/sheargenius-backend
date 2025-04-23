@@ -84,6 +84,14 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No post was found..." });
         }
 
+        [HttpDelete("AdminDeletePost")]
+        public async Task<IActionResult> AdminDeletePost(int id)
+        {
+            var success = await _postServices.AdminDeletePostAsync(id);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "No post was found..." });
+        }
+
         [HttpGet("GetPostsByUserId/{userId}")]
         public async Task<IActionResult> GetPostsByUserId(int userId)
         {

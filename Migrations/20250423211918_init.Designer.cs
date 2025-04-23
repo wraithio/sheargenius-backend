@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250423180759_init")]
+    [Migration("20250423211918_init")]
     partial class init
     {
         /// <inheritdoc />
