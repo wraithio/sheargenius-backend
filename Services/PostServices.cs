@@ -111,13 +111,6 @@ namespace sheargenius_backend.Services
 
         public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
 
-<<<<<<< HEAD
-        public async Task<List<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
-        
-
-     
-        
-=======
         public async Task<List<CommentModel>> GetCommentsByPostIdAsync(int id) => await _dataContext.Comments.Where(comment => comment.postId == id).ToListAsync();
 
         public async Task<IEnumerable<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
@@ -125,6 +118,5 @@ namespace sheargenius_backend.Services
 
         private async Task<UserModel> GetUserByUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
 
->>>>>>> 4e2d6e9a9586a609f410b1e2cf43822fcf176133
     }
 }

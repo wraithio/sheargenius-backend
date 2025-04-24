@@ -278,3 +278,7 @@ C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\shearg
 C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\obj\Debug\net8.0\sheargenius-backend.pdb
 C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\obj\Debug\net8.0\sheargenius-backend.genruntimeconfig.cache
 C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\obj\Debug\net8.0\ref\sheargenius-backend.dll
+C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\System.ClientModel.dll
+C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\System.IO.Hashing.dll
