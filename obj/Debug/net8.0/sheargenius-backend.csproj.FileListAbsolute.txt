@@ -13,6 +13,7 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.I
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -39,7 +40,6 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.E
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.ClientModel.dll

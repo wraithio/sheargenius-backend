@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using sheargenius_backend.Context;
 using sheargenius_backend.Models;
+using sheargenius_backend.Models.DTOs;
 
 namespace sheargenius_backend.Services
 {
@@ -45,8 +46,8 @@ namespace sheargenius_backend.Services
             Console.WriteLine(comment);
             PostModel postToComment = await GetPostByIdAsync(comment.postId);
             if (postToComment == null) return false;
-            if(postToComment.Comments == null) 
-            postToComment.Comments = [];
+            if (postToComment.Comments == null)
+                postToComment.Comments = [];
             postToComment.Comments.Add(comment);
             _dataContext.Posts.Update(postToComment);
             return await _dataContext.SaveChangesAsync() != 0;
@@ -57,6 +58,31 @@ namespace sheargenius_backend.Services
             var postToDelete = await GetCommentByIdAsync(id);
             if (postToDelete == null) return false;
             _dataContext.Comments.Remove(postToDelete);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+
+        public async Task<bool> ToggleLikesAsync(int postId, string username)
+        {
+            var postToLike = await GetPostByIdAsync(postId);
+            if (postToLike == null) return false;
+            // if (postToLike.Likes == null) postToLike.Likes = new string[]{};
+            if (postToLike.Likes == null) postToLike.Likes = Array.Empty<string>();
+            if (postToLike.Likes.Contains(username))
+            {
+                postToLike.Likes = postToLike.Likes.Where(like => like != username).ToArray();
+                var user = new UserModel();
+                user = await GetUserByUsername(username);
+                user.Likes = user.Likes.Where(like => like != postId).ToArray();
+                _dataContext.Users.Update(user);
+            }
+            else
+            {
+                postToLike.Likes = postToLike.Likes.Append(username).ToArray();
+                 var user = await GetUserByUsername(username);
+                user.Likes = user.Likes.Append(postId).ToArray();
+                _dataContext.Users.Update(user);
+            }
+            _dataContext.Posts.Update(postToLike);
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
@@ -76,7 +102,7 @@ namespace sheargenius_backend.Services
             _dataContext.Posts.Update(postToEdit);
             return await _dataContext.SaveChangesAsync() != 0;
         }
-        
+
 
         // FindAsync searches by the primary key (aka our id) we use this over SingleOrDefaultAsync bc it is more effecient
         private async Task<CommentModel> GetCommentByIdAsync(int id) => await _dataContext.Comments.FindAsync(id);
@@ -89,6 +115,8 @@ namespace sheargenius_backend.Services
 
         public async Task<IEnumerable<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
 
+
+        private async Task<UserModel> GetUserByUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
 
     }
 }

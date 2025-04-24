@@ -35,8 +35,8 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No Comments" });
         }
 
-        [HttpGet("GetCommentsByPostIdAsync")]
-        public async Task<IActionResult> GetCommentsByPostIdAsync(int id)
+        [HttpGet("GetCommentsByPostId")]
+        public async Task<IActionResult> GetCommentsByPostId(int id)
         {
             var posts = await _postServices.GetCommentsByPostIdAsync(id);
             if (posts != null) return Ok(posts);
@@ -66,6 +66,14 @@ namespace sheargenius_backend.Controllers
             var success = await _postServices.EditPostAsync(post);
             if (success) return Ok(new { Success = true });
             return BadRequest(new { Message = "No post was found..." });
+        }
+
+        [HttpPut("ToggleLikes")]
+        public async Task<IActionResult> ToggleLikes(int postId,string username)
+        {
+            var success = await _postServices.ToggleLikesAsync(postId,username);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Like failed to add/remove..." });
         }
         
         [HttpPost("AddComment")]

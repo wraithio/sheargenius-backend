@@ -38,8 +38,7 @@ namespace sheargenius_backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Days = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Times = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Days = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,11 +57,10 @@ namespace sheargenius_backend.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    RatingCount = table.Column<int>(type: "int", nullable: false),
+                    RatingCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Followers = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Following = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FollowerCount = table.Column<int>(type: "int", nullable: false),
-                    FollowingCount = table.Column<int>(type: "int", nullable: false),
+                    Likes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityQuestion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),

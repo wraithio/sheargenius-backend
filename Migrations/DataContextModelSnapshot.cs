@@ -100,9 +100,6 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Days")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Times")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
@@ -137,23 +134,20 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FollowerCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Followers")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Following")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FollowingCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Likes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -164,8 +158,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("RatingCount")
-                        .HasColumnType("int");
+                    b.Property<string>("RatingCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
