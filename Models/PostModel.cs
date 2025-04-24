@@ -18,5 +18,6 @@ namespace sheargenius_backend.Models
         public bool IsPublished {get;set;}
         public bool IsDeleted {get;set;}
         public virtual List<CommentModel>? Comments {get;set;} 
+        
     }
 }

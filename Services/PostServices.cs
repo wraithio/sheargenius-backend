@@ -44,6 +44,8 @@ namespace sheargenius_backend.Services
 
         public async Task<List<PostModel>> GetPostsbyCategory(string category) => await _dataContext.Posts.Where(posts => posts.Category == category && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
         
+
+     
         
     }
 }
