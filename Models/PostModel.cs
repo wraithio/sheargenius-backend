@@ -13,11 +13,15 @@ namespace sheargenius_backend.Models
         public string? Date {get;set;}
         public string? Caption {get;set;}
         public string? Image {get;set;}
-        public int Likes {get;set;}
+        public string[]? Likes {get;set;}
         public string? Category {get;set;}
         public bool IsPublished {get;set;}
         public bool IsDeleted {get;set;}
+<<<<<<< HEAD
         public virtual List<CommentModel>? Comments {get;set;} 
         
+=======
+        public virtual ICollection<CommentModel>? Comments {get;set;} = new List<CommentModel>();
+>>>>>>> 4e2d6e9a9586a609f410b1e2cf43822fcf176133
     }
 }

@@ -36,6 +36,9 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("postId")
+                        .HasColumnType("int");
+
                     b.Property<string>("username")
                         .HasColumnType("nvarchar(max)");
 
@@ -72,8 +75,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
+                    b.Property<string>("Likes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PublisherName")
                         .HasColumnType("nvarchar(max)");
@@ -134,23 +137,20 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FollowerCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Followers")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Following")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FollowingCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Hash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Likes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -161,8 +161,8 @@ namespace sheargenius_backend.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("RatingCount")
-                        .HasColumnType("int");
+                    b.Property<string>("RatingCount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");

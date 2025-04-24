@@ -21,7 +21,7 @@ namespace sheargenius_backend.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Caption = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Likes = table.Column<int>(type: "int", nullable: false),
+                    Likes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPublished = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -58,11 +58,10 @@ namespace sheargenius_backend.Migrations
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    RatingCount = table.Column<int>(type: "int", nullable: false),
+                    RatingCount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Followers = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Following = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FollowerCount = table.Column<int>(type: "int", nullable: false),
-                    FollowingCount = table.Column<int>(type: "int", nullable: false),
+                    Likes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityQuestion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -87,6 +86,7 @@ namespace sheargenius_backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    postId = table.Column<int>(type: "int", nullable: false),
                     username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostModelId = table.Column<int>(type: "int", nullable: true)
