@@ -38,7 +38,8 @@ namespace sheargenius_backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Days = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Days = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Times = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

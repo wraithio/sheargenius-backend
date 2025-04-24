@@ -12,7 +12,7 @@ using sheargenius_backend.Context;
 namespace sheargenius_backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250424075339_init")]
+    [Migration("20250424182403_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -101,6 +101,9 @@ namespace sheargenius_backend.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Days")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Times")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")

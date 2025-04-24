@@ -100,6 +100,9 @@ namespace sheargenius_backend.Migrations
                     b.Property<string>("Days")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Times")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
