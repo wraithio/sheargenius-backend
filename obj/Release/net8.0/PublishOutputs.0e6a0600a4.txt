@@ -6,6 +6,8 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\s
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\sheargenius-backend.pdb
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Azure.Core.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Azure.Identity.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Azure.Storage.Blobs.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Azure.Storage.Common.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Microsoft.Data.SqlClient.dll
@@ -27,9 +29,11 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\M
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.ClientModel.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.Configuration.ConfigurationManager.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.Drawing.Common.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.IO.Hashing.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.Memory.Data.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.Runtime.Caching.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\publish\System.Security.Cryptography.ProtectedData.dll

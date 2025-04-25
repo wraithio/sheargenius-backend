@@ -48,8 +48,6 @@ namespace sheargenius_backend.Services
                 Rating = newUser.Rating,
                 Followers = newUser.Followers,
                 Following = newUser.Following,
-                FollowerCount = newUser.FollowerCount,
-                FollowingCount = newUser.FollowingCount,
                 SecurityAnswer = newUser.SecurityAnswer,
                 SecurityQuestion = newUser.SecurityQuestion,
                 Name = newUser.Name,
@@ -157,8 +155,6 @@ namespace sheargenius_backend.Services
             user.RatingCount = currentUser.RatingCount;
             user.Followers = currentUser.Followers;
             user.Following = currentUser.Following;
-            user.FollowerCount = currentUser.FollowerCount;
-            user.FollowingCount = currentUser.FollowingCount;
             user.SecurityQuestion = currentUser.SecurityQuestion;
             user.SecurityAnswer = currentUser.SecurityAnswer;
             user.ShopName = currentUser.ShopName;
@@ -202,7 +198,6 @@ namespace sheargenius_backend.Services
         {
             UserModel foundUser = await GetUserByUsername(user.Username);
             if (Login(user) == null) return false;
-
             if (VerifyPassword(user.Password, foundUser.Salt, foundUser.Hash)) _dataContext.Users.Remove(foundUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }

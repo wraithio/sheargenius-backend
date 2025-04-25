@@ -16,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<UserServices>();
 builder.Services.AddScoped<PostServices>();
 builder.Services.AddScoped<ScheduleServices>();
+builder.Services.AddSingleton<BlobService>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddDbContext<DataContext>(options =>options.UseSqlServer(connectionString));

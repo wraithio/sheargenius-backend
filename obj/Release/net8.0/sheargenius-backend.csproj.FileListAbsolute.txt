@@ -136,3 +136,7 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\refint\sh
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.pdb
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\sheargenius-backend.genruntimeconfig.cache
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\obj\Release\net8.0\ref\sheargenius-backend.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\Azure.Storage.Blobs.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\Azure.Storage.Common.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\System.ClientModel.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Release\net8.0\System.IO.Hashing.dll
