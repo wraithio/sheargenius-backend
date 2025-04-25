@@ -4624,19 +4624,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aarmo\\.nuget\\packages\\": {}
+    "C:\\Users\\dlama\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aarmo\\CodeStack\\Level3\\sheargenius-backend\\sheargenius-backend.csproj",
+      "projectUniqueName": "C:\\Users\\dlama\\OneDrive\\Documents\\CodeStack_\\AppBuild\\sheargenius-backend\\sheargenius-backend\\sheargenius-backend.csproj",
       "projectName": "sheargenius-backend",
-      "projectPath": "C:\\Users\\aarmo\\CodeStack\\Level3\\sheargenius-backend\\sheargenius-backend.csproj",
-      "packagesPath": "C:\\Users\\aarmo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aarmo\\CodeStack\\Level3\\sheargenius-backend\\obj\\",
+      "projectPath": "C:\\Users\\dlama\\OneDrive\\Documents\\CodeStack_\\AppBuild\\sheargenius-backend\\sheargenius-backend\\sheargenius-backend.csproj",
+      "packagesPath": "C:\\Users\\dlama\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dlama\\OneDrive\\Documents\\CodeStack_\\AppBuild\\sheargenius-backend\\sheargenius-backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\aarmo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dlama\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4711,11 +4711,17 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\dlama\\OneDrive\\Documents\\CodeStack_\\AppBuild\\sheargenius-backend\\sheargenius-backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1902",
       "level": "Warning",
