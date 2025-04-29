@@ -14,10 +14,10 @@ namespace sheargenius_backend.Models
         public string? Date { get; set; }
         public string? AccountType { get; set; }
         public int Rating { get; set; }
-        public string[]? RatingCount { get; set; }
-        public string[]? Followers { get; set; }
-        public string[]? Following { get; set; }
-        public int[]? Likes { get; set; }
+        public List<string>? RatingCount { get; set; }
+        public List<string>? Followers { get; set; }
+        public List<string>? Following { get; set; }
+        public List<int>? Likes { get; set; }
         public string? SecurityQuestion { get; set; }
         public string? SecurityAnswer { get; set; }
         public string? Name { get; set; }

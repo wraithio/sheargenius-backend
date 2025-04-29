@@ -51,6 +51,14 @@ namespace sheargenius_backend.Controllers
             if (success) return Ok(new { Success = true });
             return BadRequest(new { Message = "Changes have not been saved..." });
         }
+        
+        [HttpPut("ToggleFollowers")]
+        public async Task<IActionResult> ToggleFollowers(string followingUser, string followedUser)
+        {
+            var success = await _userServices.ToggleFollowersAsync(followingUser, followedUser);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Changes have not been saved..." });
+        }
 
         // [HttpPut("UpdatePassword")]
         // public async Task<IActionResult> UpdatePassword([FromBody] UserDTO user)

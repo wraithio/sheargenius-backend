@@ -48,6 +48,7 @@ namespace sheargenius_backend.Services
                 Rating = newUser.Rating,
                 Followers = newUser.Followers,
                 Following = newUser.Following,
+                Likes = newUser.Likes,
                 SecurityAnswer = newUser.SecurityAnswer,
                 SecurityQuestion = newUser.SecurityQuestion,
                 Name = newUser.Name,
@@ -202,5 +203,24 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
         // DELETE ACCOUNT ON FRONT END WILL BE EDITACCOUNT ENDPOINT THEN TOGGLE IsDeleted bool FROM FALSE TO TRUE
+
+        public async Task<bool> ToggleFollowersAsync(string userFollowing, string userFollowed)
+        {
+            var followingUser = await GetUserByUsername(userFollowing);
+            var followedUser = await GetUserByUsername(userFollowed);
+             if (followingUser.Following.Contains(userFollowed))
+            {
+                followingUser.Following = followingUser.Following.Where(o => o != userFollowed).ToList();
+                followedUser.Followers = followingUser.Followers.Where(o => o != userFollowing).ToList();
+            }
+            else
+            {
+                followedUser.Followers.Add(userFollowing);
+                followingUser.Following.Add(userFollowed);
+            }
+            _dataContext.Users.Update(followingUser);
+            _dataContext.Users.Update(followedUser);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
     }
 }

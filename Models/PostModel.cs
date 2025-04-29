@@ -13,7 +13,7 @@ namespace sheargenius_backend.Models
         public string? Date {get;set;}
         public string? Caption {get;set;}
         public string? Image {get;set;}
-        public string[]? Likes {get;set;}
+        public List<string>? Likes {get;set;}
         public string? Category {get;set;}
         public bool IsPublished {get;set;}
         public bool IsDeleted {get;set;}

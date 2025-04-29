@@ -65,24 +65,16 @@ namespace sheargenius_backend.Services
         {
             var postToLike = await GetPostByIdAsync(postId);
             if (postToLike == null) return false;
-            // if (postToLike.Likes == null) postToLike.Likes = new string[]{};
-            if (postToLike.Likes == null) postToLike.Likes = Array.Empty<string>();
+            if (postToLike.Likes == null) postToLike.Likes = new List<string>();
             if (postToLike.Likes.Contains(username))
             {
-                postToLike.Likes = postToLike.Likes.Where(like => like != username).ToArray();
-                var user = new UserModel();
-                user = await GetUserByUsername(username);
-                user.Likes = user.Likes.Where(like => like != postId).ToArray();
-                _dataContext.Users.Update(user);
+                postToLike.Likes = postToLike.Likes.Where(o => o != username).ToList();
             }
             else
             {
-                postToLike.Likes = postToLike.Likes.Append(username).ToArray();
-                 var user = await GetUserByUsername(username);
-                user.Likes = user.Likes.Append(postId).ToArray();
-                _dataContext.Users.Update(user);
+                postToLike.Likes.Add(username);
             }
-            _dataContext.Posts.Update(postToLike);
+                _dataContext.Posts.Update(postToLike);
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
@@ -103,10 +95,9 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
-
         // FindAsync searches by the primary key (aka our id) we use this over SingleOrDefaultAsync bc it is more effecient
         private async Task<CommentModel> GetCommentByIdAsync(int id) => await _dataContext.Comments.FindAsync(id);
-        private async Task<PostModel> GetPostByIdAsync(int id) => await _dataContext.Posts.FindAsync(id);
+        private async Task<PostModel> GetPostByIdAsync(int id) => await _dataContext.Posts.SingleOrDefaultAsync(post => post.Id == id);
         private async Task<PostModel> GetPostByIdCommentsAsync(int id) => await _dataContext.Posts.AsNoTracking().Include(m => m.Comments).FirstOrDefaultAsync(m => m.Id == id);
 
         public async Task<List<PostModel>> GetPostsByUserIdAsync(int id) => await _dataContext.Posts.Where(posts => posts.UserId == id && posts.IsDeleted == false && posts.IsPublished == true).ToListAsync();
