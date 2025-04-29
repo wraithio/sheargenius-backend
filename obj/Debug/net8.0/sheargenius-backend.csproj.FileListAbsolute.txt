@@ -167,13 +167,16 @@ C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\shearg
 C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\System.ClientModel.dll
 C:\Users\dlama\OneDrive\Documents\CodeStack_\AppBuild\sheargenius-backend\sheargenius-backend\bin\Debug\net8.0\System.IO.Hashing.dll
 >>>>>>> 5cffdb5035a6429868d8a33553a8d6c529114a54
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.ClientModel.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.IO.Hashing.dll
+C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\appsettings.json
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\sheargenius-backend.deps.json
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\sheargenius-backend.runtimeconfig.json
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\sheargenius-backend.pdb
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Azure.Identity.dll
-C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Azure.Storage.Common.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Humanizer.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -188,7 +191,6 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.I
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\Mono.TextTemplating.dll
-C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.ClientModel.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Composition.AttributedModel.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Composition.Convention.dll
@@ -196,8 +198,6 @@ C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Comp
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Drawing.Common.dll
-C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.IO.Hashing.dll
-C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\aarmo\CodeStack\Level3\sheargenius-backend\bin\Debug\net8.0\System.Security.Permissions.dll

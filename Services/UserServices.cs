@@ -222,5 +222,8 @@ namespace sheargenius_backend.Services
             _dataContext.Users.Update(followedUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }
+
+                public List<UserModel> GetAllBarbers() =>  _dataContext.Users.Where(user => user.AccountType == "Barber").ToList();
+
     }
 }

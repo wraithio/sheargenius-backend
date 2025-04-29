@@ -24,6 +24,12 @@ namespace sheargenius_backend.Controllers
         {
             return _userServices.SeeAllUsers();
         }
+ 
+        [HttpGet("GetAllBarbers")]
+        public List<UserModel> GetAllBarbers()
+        {
+            return _userServices.GetAllBarbers();
+        }
 
         [HttpPost("CreateUser")]
         //[FromBody] attribute better directs to where data will be passed from 
@@ -51,7 +57,7 @@ namespace sheargenius_backend.Controllers
             if (success) return Ok(new { Success = true });
             return BadRequest(new { Message = "Changes have not been saved..." });
         }
-        
+
         [HttpPut("ToggleFollowers")]
         public async Task<IActionResult> ToggleFollowers(string followingUser, string followedUser)
         {
@@ -96,12 +102,12 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "No user found..." });
         }
 
-         [HttpGet("GetProfileInfoByUsername/{username}")]
+        [HttpGet("GetProfileInfoByUsername/{username}")]
         public async Task<IActionResult> GetProfileInfoByUsername(string username)
         {
             // var user = await _userServices.GetUserInfoByUsername(username);
             var user = await _userServices.GetProfileInfoByUsername(username);
-            
+
             if (user != null) return Ok(user);
             return BadRequest(new { Message = "No user found..." });
         }
