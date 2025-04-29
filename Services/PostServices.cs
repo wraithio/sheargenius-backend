@@ -78,6 +78,7 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
+        public async Task<PostModel> GetPostById(int id) => await GetPostByIdAsync(id);
         public async Task<bool> EditPostAsync(PostModel post)
         {
             var postToEdit = await GetPostByIdAsync(post.Id);

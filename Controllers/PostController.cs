@@ -105,7 +105,15 @@ namespace sheargenius_backend.Controllers
         {
             var posts = await _postServices.GetPostsByUserIdAsync(userId);
             if(posts != null) return Ok(posts);
-            return BadRequest(new {Message = "No Posts"});
+            return BadRequest(new {Message = "No Posts..."});
+        }
+
+        [HttpGet("GetPostByPostId/{postId}")]
+        public async Task<IActionResult> GetPostByPostId(int postId)
+        {
+            var posts = await _postServices.GetPostById(postId);
+            if(posts != null) return Ok(posts);
+            return BadRequest(new {Message = "No Post Found..."});
         }
 
         [HttpGet("GetPostsByCategory/{category}")]
