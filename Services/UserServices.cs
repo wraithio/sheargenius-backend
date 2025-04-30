@@ -208,7 +208,7 @@ namespace sheargenius_backend.Services
         {
             var followingUser = await GetUserByUsername(userFollowing);
             var followedUser = await GetUserByUsername(userFollowed);
-             if (followingUser.Following.Contains(userFollowed))
+            if (followingUser.Following.Contains(userFollowed))
             {
                 followingUser.Following = followingUser.Following.Where(o => o != userFollowed).ToList();
                 followedUser.Followers = followingUser.Followers.Where(o => o != userFollowing).ToList();
@@ -223,7 +223,16 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
-                public List<UserModel> GetAllBarbers() =>  _dataContext.Users.Where(user => user.AccountType == "Barber").ToList();
+        public List<UserModel> GetAllBarbers() => _dataContext.Users.Where(user => user.AccountType == "Barber").ToList();
 
+        public async Task<bool> AddRating(string username, int rating, string usertoRate)
+        {
+            var foundUser = await GetUserByUsername(usertoRate);
+            // if(foundUser.RatingCount.Contains(username)) return false;
+            foundUser.Rating += rating;
+            foundUser.RatingCount.Add(username);
+            _dataContext.Users.Update(foundUser);
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
     }
 }

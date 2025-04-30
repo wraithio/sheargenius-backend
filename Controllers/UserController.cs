@@ -111,5 +111,14 @@ namespace sheargenius_backend.Controllers
             if (user != null) return Ok(user);
             return BadRequest(new { Message = "No user found..." });
         }
+
+        [HttpPut("AddRating")]
+        public async Task<IActionResult> AddRating(string username,int rating,string usertoRate)
+        {
+            var success = await _userServices.AddRating(username,rating,usertoRate);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Rating has not been saved..." });
+        }
+ 
     }
 }
