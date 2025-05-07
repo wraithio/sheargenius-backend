@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using sheargenius_backend.Context;
 using sheargenius_backend.Models;
@@ -18,16 +19,21 @@ namespace sheargenius_backend.Services
             _dataContext = dataContext;
         }
 
-        public async Task<List<ScheduleModel>> SeeAllSchedules()
-            => await _dataContext.Schedules.ToListAsync();
+        public async Task<List<ScheduleModel>> SeeAllSchedules() => await _dataContext.Schedules.ToListAsync();
+        public async Task<List<RequestModel>> SeeAllRequests() => await _dataContext.Requests.ToListAsync();
 
         public async Task<bool> SetSchedule(ScheduleModel newSchedule)
         {
             var existing = await _dataContext.Schedules.FirstOrDefaultAsync(s => s.Username == newSchedule.Username);
             if (existing != null)
             {
-                existing.Days = newSchedule.Days;
-                existing.Times = newSchedule.Times;
+                existing.MondayTimes = newSchedule.MondayTimes;
+                existing.TuesdayTimes = newSchedule.TuesdayTimes;
+                existing.WednesdayTimes = newSchedule.WednesdayTimes;
+                existing.ThursdayTimes = newSchedule.ThursdayTimes;
+                existing.FridayTimes = newSchedule.FridayTimes;
+                existing.SaturdayTimes = newSchedule.SaturdayTimes;
+                existing.SundayTimes = newSchedule.SundayTimes;
                 _dataContext.Schedules.Update(existing);
             }
             else
@@ -59,8 +65,7 @@ namespace sheargenius_backend.Services
             return await _dataContext.SaveChangesAsync() > 0;
         }
 
-       
-        public async Task<bool> UpdateSchedule( ScheduleModel updatedSchedule)
+        public async Task<bool> UpdateSchedule(ScheduleModel updatedSchedule)
         {
             var existingSchedule = await _dataContext.Schedules.FindAsync(updatedSchedule.Id);
 
@@ -69,8 +74,13 @@ namespace sheargenius_backend.Services
 
 
             existingSchedule.Username = updatedSchedule.Username;
-            existingSchedule.Days = updatedSchedule.Days;
-            existingSchedule.Times = updatedSchedule.Times;
+                existingSchedule.MondayTimes = updatedSchedule.MondayTimes;
+                existingSchedule.TuesdayTimes = updatedSchedule.TuesdayTimes;
+                existingSchedule.WednesdayTimes = updatedSchedule.WednesdayTimes;
+                existingSchedule.ThursdayTimes = updatedSchedule.ThursdayTimes;
+                existingSchedule.FridayTimes = updatedSchedule.FridayTimes;
+                existingSchedule.SaturdayTimes = updatedSchedule.SaturdayTimes;
+                existingSchedule.SundayTimes = updatedSchedule.SundayTimes;
 
             try
             {
@@ -83,33 +93,177 @@ namespace sheargenius_backend.Services
                 return false;
             }
         }
-public async Task<bool> CheckAvailability(string username, string day, string time)
-{
-    var userSchedule = await _dataContext.Schedules
-        .FirstOrDefaultAsync(s => s.Username == username);
+        // public async Task<bool> CheckAvailability(string day, string time, string BarberName)
+        // {
+        //     var userSchedule = await _dataContext.Schedules
+        //         .FirstOrDefaultAsync(s => s.Username == BarberName);
 
-    if (userSchedule == null)
-        return false; 
+        //     if (userSchedule == null)
+        //         return false;
 
-    var normalizedDay = day.Trim().ToLower();
-    var normalizedTime = time.Trim().ToLower();
 
-    var isAvailableDay = userSchedule.Days != null &&
-        userSchedule.Days.Any(daysString =>
-            daysString.Split(',')
-                .Select(d => d.Trim().ToLower())
-                .Contains(normalizedDay)
-        );
+        //     var isAvailableDay = userSchedule.Days != null &&
+        //         userSchedule.Days.Any(daysString =>
+        //             daysString.Split(',')
+        //                 .Select(d => d.Trim().ToLower())
+        //                 .Contains(day)
+        //         );
 
-    var isAvailableTime = userSchedule.Times != null &&
-        userSchedule.Times.Any(timesString =>
-            timesString.Split(',')
-                .Select(t => t.Trim().ToLower())
-                .Contains(normalizedTime)
-        );
+        //     var isAvailableTime = userSchedule.Times != null &&
+        //         userSchedule.Times.Any(timesString =>
+        //             timesString.Split(',')
+        //                 .Select(t => t.Trim().ToLower())
+        //                 .Contains(time)
+        //         );
 
-    return isAvailableDay && isAvailableTime;
-}
+        //     var existingRequest = await _dataContext.Requests
+        //         .FirstOrDefaultAsync(r => r.BarberName == BarberName && r.Day == day && r.Time == time);
+        //     if (existingRequest != null)
+        //     {
+        //         return false; // Request already exists
+        //     }
+
+        //     return true;
+        // }
+
+        public async Task<ScheduleModel> FilterScheduleByRequest(string BarberName)
+        {
+            var userSchedule = await _dataContext.Schedules
+               .FirstOrDefaultAsync(s => s.Username == BarberName);
+
+            var requests = await _dataContext.Requests
+                .Where(r => r.BarberName == BarberName && r.isAccepted == true)
+                .ToListAsync();
+
+            var filteredSchedule = userSchedule;
+
+            foreach (var request in requests)
+            {
+                if(request.Day == "Monday")
+                {
+                    filteredSchedule.MondayTimes = filteredSchedule.MondayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Tuesday")
+                {
+                    filteredSchedule.TuesdayTimes = filteredSchedule.TuesdayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Wednesday")
+                {
+                    filteredSchedule.WednesdayTimes = filteredSchedule.WednesdayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Thursday")
+                {
+                    filteredSchedule.ThursdayTimes = filteredSchedule.ThursdayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Friday")
+                {
+                    filteredSchedule.FridayTimes = filteredSchedule.FridayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Saturday")
+                {
+                    filteredSchedule.SaturdayTimes = filteredSchedule.SaturdayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+                else if (request.Day == "Sunday")
+                {
+                    filteredSchedule.SundayTimes = filteredSchedule.SundayTimes
+                        .Where(time => time != request.Time && request.isAccepted == true)
+                        .ToArray();
+                }
+            }
+            return filteredSchedule;
+        //     var requestedTimes = requests
+        //    .Select(r => r.Time!);
+            
+
+        //     // Filter out any day or time present in the corresponding request sets.
+        //     var filteredMondays = userSchedule.MondayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredTuesday = userSchedule.TuesdayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredWednesday = userSchedule.WednesdayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredThursday = userSchedule.ThursdayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredFridays = userSchedule.FridayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredSaturdays = userSchedule.SaturdayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+        //     var filteredSundays = userSchedule.SundayTimes
+        //         .Where(time => !requestedTimes.Contains(time))
+        //         .ToArray();
+
+            // Return a new schedule model with the filtered arrays.
+            // return new ScheduleModel
+            // {
+            //     Id = userSchedule.Id,
+            //     Username = userSchedule.Username,
+            //     MondayTimes = filteredMondays,
+            //     TuesdayTimes = filteredTuesday,
+            //     WednesdayTimes = filteredWednesday,
+            //     ThursdayTimes = filteredThursday,
+            //     FridayTimes = filteredFridays,
+            //     SaturdayTimes = filteredSaturdays,
+            //     SundayTimes = filteredSundays,
+            // };
+        }
+
+        public async Task<bool> SendRequest(RequestModel request)
+        {
+            // var barberSchedule = await _dataContext.Schedules
+            //     .FirstOrDefaultAsync(s => s.Username == request.BarberName);
+            
+            var existingRequest = await _dataContext.Requests.FirstOrDefaultAsync(r => r.BarberName == request.BarberName && r.Day == request.Day && r.Time == request.Time);
+            if (existingRequest != null)
+            {
+                return false; // Request already exists
+            }
+            await _dataContext.Requests.AddAsync(request);
+            return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<List<RequestModel>> FindRequestsByBarberName(string username)
+        {
+            return await _dataContext.Requests
+                .Where(r => r.BarberName == username)
+                .ToListAsync();
+        }
+
+        public async Task<bool> DeleteRequest(int id)
+        {
+            var request = await _dataContext.Requests.FindAsync(id);
+            if (request == null) return false;
+
+            _dataContext.Requests.Remove(request);
+            return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> AcceptRequest(int id)
+        {
+            var request = await _dataContext.Requests.FindAsync(id);
+            if (request == null) return false;
+
+            request.isAccepted = true;
+            _dataContext.Requests.Update(request);
+            return await _dataContext.SaveChangesAsync() > 0;
+        }
 
     }
 }

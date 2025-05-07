@@ -19,5 +19,6 @@ namespace sheargenius_backend.Context
         public DbSet<PostModel> Posts {get;set;}
         public DbSet<CommentModel> Comments {get;set;}
         public DbSet<ScheduleModel> Schedules {get;set;}
+        public DbSet<RequestModel> Requests {get;set;}
     }
 }

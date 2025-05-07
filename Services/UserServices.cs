@@ -29,7 +29,7 @@ namespace sheargenius_backend.Services
 
         public List<UserModel> SeeAllUsers()
         {
-            return _dataContext.Users.ToList();
+           return _dataContext.Users.ToList();
         }
 
         public async Task<bool> CreateUser(UserInfoDTO newUser)
@@ -225,12 +225,13 @@ namespace sheargenius_backend.Services
 
         public List<UserModel> GetAllBarbers() => _dataContext.Users.Where(user => user.AccountType == "Barber").ToList();
 
-        public async Task<bool> AddRating(string username, int rating, string usertoRate)
+        public async Task<bool> AddRating(RatingModel rateModel)
         {
-            var foundUser = await GetUserByUsername(usertoRate);
+            if(rateModel==null) return false;
+            var foundUser = await GetUserByUsername(rateModel.UserToRate);
             // if(foundUser.RatingCount.Contains(username)) return false;
-            foundUser.Rating += rating;
-            foundUser.RatingCount.Add(username);
+            foundUser.Rating += rateModel.Rating;
+            foundUser.RatingCount.Add(rateModel.Username);
             _dataContext.Users.Update(foundUser);
             return await _dataContext.SaveChangesAsync() != 0;
         }

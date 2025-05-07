@@ -89,6 +89,34 @@ namespace sheargenius_backend.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("sheargenius_backend.Models.RequestModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BarberName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Day")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isAccepted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("sheargenius_backend.Models.ScheduleModel", b =>
                 {
                     b.Property<int>("Id")
@@ -97,13 +125,28 @@ namespace sheargenius_backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Days")
+                    b.Property<string>("FridayTimes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Times")
+                    b.Property<string>("MondayTimes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SaturdayTimes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SundayTimes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ThursdayTimes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TuesdayTimes")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WednesdayTimes")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

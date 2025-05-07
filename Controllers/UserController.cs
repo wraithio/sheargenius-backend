@@ -113,9 +113,9 @@ namespace sheargenius_backend.Controllers
         }
 
         [HttpPut("AddRating")]
-        public async Task<IActionResult> AddRating(string username,int rating,string usertoRate)
+        public async Task<IActionResult> AddRating([FromBody]RatingModel ratingModel)
         {
-            var success = await _userServices.AddRating(username,rating,usertoRate);
+            var success = await _userServices.AddRating(ratingModel);
             if (success) return Ok(new { Success = true });
             return BadRequest(new { Message = "Rating has not been saved..." });
         }
