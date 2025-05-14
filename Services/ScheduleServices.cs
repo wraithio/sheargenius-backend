@@ -49,11 +49,10 @@ namespace sheargenius_backend.Services
             return await _dataContext.Schedules.FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<List<ScheduleModel>> GetScheduleByUsername(string username)
+        public async Task<ScheduleModel> GetScheduleByUsername(string username)
         {
             return await _dataContext.Schedules
-                .Where(s => s.Username == username)
-                .ToListAsync();
+                .FirstOrDefaultAsync(s => s.Username == username);
         }
 
         public async Task<bool> DeleteSchedule(int id)

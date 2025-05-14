@@ -44,11 +44,11 @@ namespace sheargenius_backend.Controllers
 
 
         [HttpGet("GetSheduleByUsername/{username}")]
-        public async Task<ActionResult<List<ScheduleModel>>> GetScheduleByUsername(string username)
+        public async Task<ActionResult<ScheduleModel>> GetScheduleByUsername(string username)
         {
-            var schedules = await _scheduleServices.GetScheduleByUsername(username);
-            if (schedules == null || !schedules.Any()) return NotFound("No schedules found for that username.");
-            return Ok(schedules);
+            var schedule = await _scheduleServices.GetScheduleByUsername(username);
+            if (schedule == null) return NotFound("No schedules found for that username.");
+            return Ok(schedule);
         }
 
         [HttpGet("SeeAllSchedules")]
