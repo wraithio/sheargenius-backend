@@ -26,6 +26,12 @@ namespace sheargenius_backend.Controllers
             var result = await _scheduleServices.SetSchedule(schedule);
             return result ? Ok("Schedule saved successfully.") : BadRequest("Failed to save schedule.");
         }
+        [HttpPut("EditSchedule")]
+        public async Task<IActionResult> EditSchedule([FromBody] ScheduleModel schedule)
+        {
+            var result = await _scheduleServices.EditSchedule(schedule);
+            return result ? Ok("Schedule edited successfully.") : BadRequest("Failed to save schedule.");
+        }
 
         [HttpPost("SendRequest")]
         public async Task<IActionResult> SendRequest([FromBody] RequestModel request)

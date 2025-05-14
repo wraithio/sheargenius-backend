@@ -25,22 +25,28 @@ namespace sheargenius_backend.Services
         public async Task<bool> SetSchedule(ScheduleModel newSchedule)
         {
             var existing = await _dataContext.Schedules.FirstOrDefaultAsync(s => s.Username == newSchedule.Username);
-            if (existing != null)
-            {
-                existing.MondayTimes = newSchedule.MondayTimes;
-                existing.TuesdayTimes = newSchedule.TuesdayTimes;
-                existing.WednesdayTimes = newSchedule.WednesdayTimes;
-                existing.ThursdayTimes = newSchedule.ThursdayTimes;
-                existing.FridayTimes = newSchedule.FridayTimes;
-                existing.SaturdayTimes = newSchedule.SaturdayTimes;
-                existing.SundayTimes = newSchedule.SundayTimes;
-                _dataContext.Schedules.Update(existing);
-            }
-            else
+            if (existing == null)
             {
                 await _dataContext.Schedules.AddAsync(newSchedule);
             }
-
+            return await _dataContext.SaveChangesAsync() != 0;
+        }
+        public async Task<bool> EditSchedule(ScheduleModel newSchedule)
+        {
+            var existing = await _dataContext.Schedules.FirstOrDefaultAsync(s => s.Username == newSchedule.Username);
+            if (existing != null)
+            {
+                {
+                    existing.MondayTimes = newSchedule.MondayTimes;
+                    existing.TuesdayTimes = newSchedule.TuesdayTimes;
+                    existing.WednesdayTimes = newSchedule.WednesdayTimes;
+                    existing.ThursdayTimes = newSchedule.ThursdayTimes;
+                    existing.FridayTimes = newSchedule.FridayTimes;
+                    existing.SaturdayTimes = newSchedule.SaturdayTimes;
+                    existing.SundayTimes = newSchedule.SundayTimes;
+                    _dataContext.Schedules.Update(existing);
+                }
+            }
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
@@ -121,7 +127,7 @@ namespace sheargenius_backend.Services
         //     {
         //         return false; // Request already exists
         //     }
-        
+
         //     return true;
         // }
 
