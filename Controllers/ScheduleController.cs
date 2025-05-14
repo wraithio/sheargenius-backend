@@ -113,16 +113,31 @@ namespace sheargenius_backend.Controllers
             return Ok(result);
         }
 
-        [HttpPut("AcceptRequest")]
+        [HttpPut("AcceptRequest/{id}")]
         public async Task<IActionResult>AcceptRequest (int id)
         {
             var result = await _scheduleServices.AcceptRequest(id);
             return Ok(result);
         }
+
+        [HttpPut("DeclineRequest/{id}")]
+        public async Task<IActionResult>DeclineRequest (int id)
+        {
+            var result = await _scheduleServices.DeclineRequest(id);
+            return Ok(result);
+        }
+
         [HttpGet("FindRequestsByBarberName/{barberName}")]
         public async Task<IActionResult>FindRequestsByBarberName (string barberName)
         {
             var result = await _scheduleServices.FindRequestsByBarberName(barberName);
+            return Ok(result);
+        }
+
+        [HttpGet("FindRequestsByUsername/{username}")]
+        public async Task<IActionResult>FindRequestsByUsername (string username)
+        {
+            var result = await _scheduleServices.FindRequestsByUsername(username);
             return Ok(result);
         }
     }

@@ -72,15 +72,14 @@ namespace sheargenius_backend.Services
             if (existingSchedule == null)
                 return false;
 
-
             existingSchedule.Username = updatedSchedule.Username;
-                existingSchedule.MondayTimes = updatedSchedule.MondayTimes;
-                existingSchedule.TuesdayTimes = updatedSchedule.TuesdayTimes;
-                existingSchedule.WednesdayTimes = updatedSchedule.WednesdayTimes;
-                existingSchedule.ThursdayTimes = updatedSchedule.ThursdayTimes;
-                existingSchedule.FridayTimes = updatedSchedule.FridayTimes;
-                existingSchedule.SaturdayTimes = updatedSchedule.SaturdayTimes;
-                existingSchedule.SundayTimes = updatedSchedule.SundayTimes;
+            existingSchedule.MondayTimes = updatedSchedule.MondayTimes;
+            existingSchedule.TuesdayTimes = updatedSchedule.TuesdayTimes;
+            existingSchedule.WednesdayTimes = updatedSchedule.WednesdayTimes;
+            existingSchedule.ThursdayTimes = updatedSchedule.ThursdayTimes;
+            existingSchedule.FridayTimes = updatedSchedule.FridayTimes;
+            existingSchedule.SaturdayTimes = updatedSchedule.SaturdayTimes;
+            existingSchedule.SundayTimes = updatedSchedule.SundayTimes;
 
             try
             {
@@ -93,6 +92,7 @@ namespace sheargenius_backend.Services
                 return false;
             }
         }
+
         // public async Task<bool> CheckAvailability(string day, string time, string BarberName)
         // {
         //     var userSchedule = await _dataContext.Schedules
@@ -122,7 +122,7 @@ namespace sheargenius_backend.Services
         //     {
         //         return false; // Request already exists
         //     }
-
+        
         //     return true;
         // }
 
@@ -139,7 +139,7 @@ namespace sheargenius_backend.Services
 
             foreach (var request in requests)
             {
-                if(request.Day == "Monday")
+                if (request.Day == "Monday")
                 {
                     filteredSchedule.MondayTimes = filteredSchedule.MondayTimes
                         .Where(time => time != request.Time && request.isAccepted == true)
@@ -183,32 +183,32 @@ namespace sheargenius_backend.Services
                 }
             }
             return filteredSchedule;
-        //     var requestedTimes = requests
-        //    .Select(r => r.Time!);
-            
+            //     var requestedTimes = requests
+            //    .Select(r => r.Time!);
 
-        //     // Filter out any day or time present in the corresponding request sets.
-        //     var filteredMondays = userSchedule.MondayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredTuesday = userSchedule.TuesdayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredWednesday = userSchedule.WednesdayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredThursday = userSchedule.ThursdayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredFridays = userSchedule.FridayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredSaturdays = userSchedule.SaturdayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
-        //     var filteredSundays = userSchedule.SundayTimes
-        //         .Where(time => !requestedTimes.Contains(time))
-        //         .ToArray();
+
+            //     // Filter out any day or time present in the corresponding request sets.
+            //     var filteredMondays = userSchedule.MondayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredTuesday = userSchedule.TuesdayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredWednesday = userSchedule.WednesdayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredThursday = userSchedule.ThursdayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredFridays = userSchedule.FridayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredSaturdays = userSchedule.SaturdayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
+            //     var filteredSundays = userSchedule.SundayTimes
+            //         .Where(time => !requestedTimes.Contains(time))
+            //         .ToArray();
 
             // Return a new schedule model with the filtered arrays.
             // return new ScheduleModel
@@ -229,7 +229,7 @@ namespace sheargenius_backend.Services
         {
             // var barberSchedule = await _dataContext.Schedules
             //     .FirstOrDefaultAsync(s => s.Username == request.BarberName);
-            
+
             var existingRequest = await _dataContext.Requests.FirstOrDefaultAsync(r => r.BarberName == request.BarberName && r.Day == request.Day && r.Time == request.Time);
             if (existingRequest != null)
             {
@@ -242,7 +242,13 @@ namespace sheargenius_backend.Services
         public async Task<List<RequestModel>> FindRequestsByBarberName(string username)
         {
             return await _dataContext.Requests
-                .Where(r => r.BarberName == username)
+                .Where(r => r.BarberName == username && r.Time != "404")
+                .ToListAsync();
+        }
+        public async Task<List<RequestModel>> FindRequestsByUsername(string username)
+        {
+            return await _dataContext.Requests
+                .Where(r => r.Username == username)
                 .ToListAsync();
         }
 
@@ -261,6 +267,15 @@ namespace sheargenius_backend.Services
             if (request == null) return false;
 
             request.isAccepted = true;
+            _dataContext.Requests.Update(request);
+            return await _dataContext.SaveChangesAsync() > 0;
+        }
+        public async Task<bool> DeclineRequest(int id)
+        {
+            var request = await _dataContext.Requests.FindAsync(id);
+            if (request == null) return false;
+
+            request.Time = "404";
             _dataContext.Requests.Update(request);
             return await _dataContext.SaveChangesAsync() > 0;
         }
