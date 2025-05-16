@@ -49,7 +49,7 @@ namespace sheargenius_backend.Controllers
         }
 
 
-        [HttpGet("GetSheduleByUsername/{username}")]
+        [HttpGet("GetScheduleByUsername/{username}")]
         public async Task<ActionResult<ScheduleModel>> GetScheduleByUsername(string username)
         {
             var schedule = await _scheduleServices.GetScheduleByUsername(username);
