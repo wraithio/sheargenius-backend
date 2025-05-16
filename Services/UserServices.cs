@@ -75,8 +75,8 @@ namespace sheargenius_backend.Services
             foundUser.Email = updatedUser.Email;
             foundUser.ShopName = updatedUser.ShopName;
             foundUser.Address = updatedUser.Address;
-            foundUser.City = updatedUser.State;
-            foundUser.State = updatedUser.City;
+            foundUser.City = updatedUser.City;
+            foundUser.State = updatedUser.State;
             foundUser.ZIP = updatedUser.ZIP;
             foundUser.Pfp = updatedUser.Pfp;
             _dataContext.Users.Update(foundUser);
