@@ -123,5 +123,13 @@ namespace sheargenius_backend.Controllers
             if(posts != null) return Ok(posts);
             return BadRequest(new {Message = "No posts have that category"});
         }
+
+        [HttpGet("FindLikesByUsername/{username}")]
+        public async Task<IActionResult> FindLikesByUsername(string username)
+        {
+            var posts = await _postServices.FindLikesByUsername(username);
+            if(posts != null) return Ok(posts);
+            return BadRequest(new {Message = "No likes were found..."});
+        }
     }
 }

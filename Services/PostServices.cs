@@ -74,7 +74,7 @@ namespace sheargenius_backend.Services
             {
                 postToLike.Likes.Add(username);
             }
-                _dataContext.Posts.Update(postToLike);
+            _dataContext.Posts.Update(postToLike);
             return await _dataContext.SaveChangesAsync() != 0;
         }
 
@@ -110,5 +110,13 @@ namespace sheargenius_backend.Services
 
         private async Task<UserModel> GetUserByUsername(string username) => await _dataContext.Users.SingleOrDefaultAsync(user => user.Username == username);
 
+        public async Task<List<int>> FindLikesByUsername(string username)
+        {
+            var posts = await _dataContext.Posts
+                .Where(post => post.Likes != null && post.Likes.Contains(username) && post.IsDeleted == false && post.IsPublished == true)
+                .Select(post => post.Id)
+                .ToListAsync();
+            return posts;
+        }
     }
 }
