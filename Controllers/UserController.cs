@@ -66,12 +66,13 @@ namespace sheargenius_backend.Controllers
             return BadRequest(new { Message = "Changes have not been saved..." });
         }
 
-        // [HttpPut("UpdatePassword")]
-        // public async Task<IActionResult> UpdatePassword([FromBody] UserDTO user)
-        // {
-        //     var success = await _userServices.UpdatePassword(user.)
-        //     return _userServices.UpdatePassword(user);
-        // }
+        [HttpPut("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UserDTO user)
+        {
+            var success = await _userServices.UpdatePassword(user);
+            if (success) return Ok(new { Success = true });
+            return BadRequest(new { Message = "Changes have not been saved..." });
+        }
 
         [HttpDelete]
         [Route("DeleteAccount")]
