@@ -76,7 +76,6 @@ namespace sheargenius_backend.Controllers
 
         [HttpDelete]
         [Route("DeleteAccount")]
-
         public async Task<IActionResult> DeleteAccount([FromBody] UserDTO user)
         {
             var success = await _userServices.DeleteAccount(user);
